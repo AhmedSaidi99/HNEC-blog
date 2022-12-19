@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Blog from '../components/Blog'
-import Post from '../components/singlePost.vue'
-import AddPost from '../components/AddPost.vue'
+import Blog from '../assets/components/Blog'
+import Post from '../assets/components/singlePost.vue'
+import AddPost from '../assets/components/AddPost.vue'
 
 Vue.use(Router)
 
