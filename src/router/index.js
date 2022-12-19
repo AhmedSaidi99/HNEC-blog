@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Blog from '../components/Blog.vue'
+import Blog from '../components/Blog'
 import Post from '../components/singlePost.vue'
 import AddPost from '../components/AddPost.vue'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
