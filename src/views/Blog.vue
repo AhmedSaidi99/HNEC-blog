@@ -2,8 +2,9 @@
     <div id="blog">
       <div class="container">
         <h1>All posts:</h1>
+        <input type="text" v-model="search" placeholder="search..." class="search-field" />
         <div class="all-posts">
-        <div class="post" v-for="post in posts" v-bind:key="post.id">
+        <div class="post" v-for="post in filteredPosts" v-bind:key="post.id">
             <h2>{{ post.title }}</h2>
             <p>{{ post.body.slice(0, 50) }}....</p>
             <router-link v-bind:to="'/posts/' + post.id"><button>Read more >>></button></router-link>
@@ -18,7 +19,8 @@ export default {
   name: 'Blog',
   data () {
     return {
-      posts: []
+      posts: [],
+      search: ''
     }
   },
   methods: {
@@ -28,12 +30,22 @@ export default {
       this.posts = finalRes
     }
   },
+  computed: {
+    filteredPosts() {
+      return this.posts.filter( post => {
+        return post.title.match(this.search)
+      })
+    }
+  },
   created () {
     this.getData()
   }
 }
 </script>
 <style scoped>
+#blog {
+  flex: 1;
+}
 h1 {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
@@ -42,6 +54,20 @@ h1 {
   margin-bottom: 20px;
   width: fit-content;
   text-align: left;
+}
+.search-field {
+  padding: 8px;
+  border-radius: 8px;
+  border: 2px solid #41b883;
+  outline: none;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: 'Quicksand', sans-serif;
+  background: #ededed;
+  color: #35495e;
+}
+.search-field::placeholder {
+  color: #35495e;
 }
 .all-posts {
   display: grid;
